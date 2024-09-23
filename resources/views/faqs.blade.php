@@ -36,12 +36,24 @@
                     <div class="col-lg-12">
                         <div class="Provides shadow-lg">
                             <div class="nav nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Explore All Questions</button>
+                                @foreach(config('custom.faqcategories') as $key => $val)
+                                <button class="nav-link @if($loop->first) active @endif"
+                                        id="v-pills-{{$key}}-tab"
+                                        data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-{{ $key }}"
+                                        type="button"
+                                        role="tab"
+                                        aria-controls="v-pills-{{ $key }}"
+                                        aria-selected="@if($loop->first) true @else false @endif"
+                                        style="white-space: normal; margin-right: 5px; padding: 7px;">
+                                    {{ $val }}
+                                </button>
+                                @endforeach
                             </div>
-                            <form>
-                                <input type="text" placeholder="Enter question keywords">
-                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
+{{--                            <form>--}}
+{{--                                <input type="text" placeholder="Enter question keywords">--}}
+{{--                                <button><i class="fa-solid fa-magnifying-glass"></i></button>--}}
+{{--                            </form>--}}
                         </div>
                     </div>
                     <div class="col-lg-12 gap">
